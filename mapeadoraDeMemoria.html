@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+
+<head>
+  <title>Learning Fundamentals of JavaScript</title>
+  <link rel="stylesheet" href="style.css" />
+  <!--
+  we could import a js file (main.js for example) with:-->
+  <script src="main.js" type="text/javascript"></script>
+
+</head>
+
+<body id="body">
+
+  <div class="header">
+    <h1 id="heading">Mapeadora de Memória</h1>
+    <p>Exemplo de questão: <br>Considerando uma memória cache de <b>64bytes</b>, com <b>8 bytes por bloco</b>, em um sistema com <b>espaço de endereçamento de 256 bytes</b>,
+      em qual bloco (ou quais blocos) estará mapeado o endereço 0x64 (100d)?
+      Considere os blocos com numeração iniciando em zero.</p>
+  </div>
+
+  <div class="container">
+    <form method="post" name="myform" onsubmit="return getValues()">
+      <div>
+        <label>Tamanho da cache (em bytes):</label>
+        <input type="number" step="1" name="cacheSize" id="cacheSize" />
+      </div>
+      <br />
+      <div>
+        <label>Tamanho do bloco (em bytes):</label>
+        <input type="number" step="1" name="blockSize" id="blockSize" />
+      </div>
+      <br />
+      <div>
+        <label>Endereço a ser mapeado(em decimal):</label>
+        <input type="number" step="1" name="address" id="address" />
+      </div>
+      <br />
+      <div>
+        <label>Mapeamento grupo associativo:</label>
+        <select name="groupAssociative" id="groupAssociative">
+          <option value="two">2-way-set-associative</option>
+          <option value="four">4-way-set-associative</option>
+          <option value="eight">8-way-set-associative</option>
+        </select>
+      </div>
+      <br />
+      <input type="submit" value="Submit" />
+
+    </form>
+    <br />
+
+
+    <div>
+      <p id="numBlocks">Número de blocos da cache: </p>
+      <p id="directMapping">Endereço por mapeamento direto - bloco: </p>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
