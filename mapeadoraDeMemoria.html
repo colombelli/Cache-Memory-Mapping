@@ -21,13 +21,22 @@
   <div class="container">
     <form method="post" name="myform" onsubmit="return getValues()">
       <div>
-        <label>Tamanho da cache (em bytes):</label>
+        <label>Tamanho da cache:</label>
         <input type="number" step="1" name="cacheSize" id="cacheSize" />
+		<select name="cacheSizeMeasure" id="cacheSizeMeasure">
+			<option value="cacheBytes">Bytes</option>
+			<option value="cacheKbytes">KB</option>
+			<option value="cacheMbytes">MB</option>
+		</select>
       </div>
       <br />
       <div>
-        <label>Tamanho do bloco (em bytes):</label>
+        <label>Tamanho do bloco:</label>
         <input type="number" step="1" name="blockSize" id="blockSize" />
+		<select name="blockSizeMeasure" id="blockSizeMeasure">
+			<option value="blockBytes">Bytes</option>
+			<option value="blockKbytes">KB</option>
+		</select>
       </div>
       <br />
       <div>
