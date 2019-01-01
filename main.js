@@ -98,7 +98,7 @@ function calculateMapping(cache, block, address) {
     tag: function(){
       return parseInt(tagBinaryString, 2)},
     tagS: function(){
-      return parseInt(tagSBinaryString, 2)},  
+      return parseInt(tagSBinaryString, 2)},
     stringToConcatenate1: function(){
       return this.block() + " | palavra " + this.word() + " | tag " + this.tag()},
     stringToConcatenate2: function(){
@@ -107,7 +107,7 @@ function calculateMapping(cache, block, address) {
 
   blockAddressHTML.innerHTML = "Mapeamento direto: bloco " + finalValues.stringToConcatenate1();
   setAddressHTML.innerHTML = "Mapeamento grupo associativo: " + finalValues.stringToConcatenate2();
-  fullAddressHTML.innerHTML = "Mapeamento completamente associativo: do bloco 0 ao bloco " + numBlocks;
+  fullAddressHTML.innerHTML = "Mapeamento completamente associativo: do bloco 0 ao bloco " + (numBlocks-1);
 
 
 
