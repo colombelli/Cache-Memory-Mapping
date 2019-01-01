@@ -32,7 +32,7 @@ function Block(blockSize) {
   this.sizeInBytes = // the cache size converted to a integer byte value (in base-2)
     function() {
       if (this.measure == "blockBytes")
-        return cacheSize;
+        return blockSize;
       else
         return this.size * 1024;
     }
@@ -45,14 +45,15 @@ function Block(blockSize) {
 function calculateMapping(cache, block, address) {
 
   // Calculates number of the blocks
-  var numBlocks = cache.sizeInBytes / block.sizeInBytes;
+  var numBlocks = cache.sizeInBytes() / block.sizeInBytes();
   var numBlocksHTML = document.getElementById('numBlocks');
   numBlocksHTML.innerHTML = "Número de blocos da cache: " + numBlocks; // shows result on numBlocks paragraph
 
   var binAddress = dec2bin(address);  // Converts the integer of the addres to a binary string
   var bitsBlock = Math.log2(numBlocks); // Calculates how many bits will give the block
-  var bitsWord = Math.log2(block.sizeInBytes); // Calculates how many bits will give the word
+  var bitsWord = Math.log2(block.sizeInBytes()); // Calculates how many bits will give the word
   var bitsTag = binAddress.length - (bitsWord + bitsBlock); // Calculates how many bits will give the tag
+
 
 
   // Calculates block address
@@ -67,6 +68,7 @@ function calculateMapping(cache, block, address) {
   if (bitsTag != 0)
     var tagBinaryString = binAddress.substr(0, bitsBlock);
 
+
   // final block - transforming the binary string back to numeric integer
   var finalValues = {
     word: function(){
@@ -75,10 +77,11 @@ function calculateMapping(cache, block, address) {
       return parseInt(blockBinaryString, 2)},
     tag: function(){
       return parseInt(tagBinaryString, 2)},
-    //stringToConcatenate: this.block() + " | palavra " + this.word() + " | tag " + this.tag()
+    stringToConcatenate: function(){
+      return this.block() + " | palavra " + this.word() + " | tag " + this.tag()}
   }
-   console.log(finalValues.block());
-  //blockAddressHTML.innerHTML = "Endereço por mapeamento direto: bloco " + finalValues.stringToConcatenate;
+
+  blockAddressHTML.innerHTML = "Endereço por mapeamento direto: bloco " + finalValues.stringToConcatenate();
 
 
 
