@@ -62,11 +62,12 @@ function calculateMapping(cache, block, address) {
   bitsSet = Math.log2(cache.sizeInBytes() / (block.sizeInBytes() * setAssociativeMap))
   bitsTagS = binAddress.length - (bitsWord + bitsSet);
 
-  console.log(bitsSet)
+
   // Calculates block address
 
-  var blockAddressHTML = document.getElementById('directMapping');
+  var blockAddressHTML = document.getElementById('directMapping')
   var setAddressHTML = document.getElementById('groupAssociativeMapping')
+  var fullAddressHTML = document.getElementById('fullAssociativeMapping')
 
   // catches the substring corresponding to what matters
   var wordBinaryString = binAddress.substr(bitsTag+bitsBlock); // withouth comma: from that till the end
@@ -96,14 +97,19 @@ function calculateMapping(cache, block, address) {
       return setAssociativeMap - 1 + this.set()},
     tag: function(){
       return parseInt(tagBinaryString, 2)},
+    tagS: function(){
+      return parseInt(tagSBinaryString, 2)},  
     stringToConcatenate1: function(){
       return this.block() + " | palavra " + this.word() + " | tag " + this.tag()},
     stringToConcatenate2: function(){
-      return "do bloco " + this.set() + " ao bloco " + this.fBlockSet()}
+      return "do bloco " + this.set() + " ao bloco " + this.fBlockSet() + " | tag " + this.tagS()}
   }
 
-  blockAddressHTML.innerHTML = "Endereço por mapeamento direto: bloco " + finalValues.stringToConcatenate1();
-  setAddressHTML.innerHTML = "Endereço por mapeamento grupo associativo: " + finalValues.stringToConcatenate2();
+  blockAddressHTML.innerHTML = "Mapeamento direto: bloco " + finalValues.stringToConcatenate1();
+  setAddressHTML.innerHTML = "Mapeamento grupo associativo: " + finalValues.stringToConcatenate2();
+  fullAddressHTML.innerHTML = "Mapeamento completamente associativo: do bloco 0 ao bloco " + numBlocks;
+
+
 
 
   return false;
